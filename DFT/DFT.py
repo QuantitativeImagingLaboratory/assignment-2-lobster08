@@ -1,33 +1,32 @@
 # For this part of the assignment, please implement your own code for all computations,
 # Do not use inbuilt functions like fft from either numpy, opencv or other libraries
-from cmath import pi, exp, cos
+
 import numpy as np
 
 class DFT:
 
-    # Function to calculate complex number
+    # Function to calculate the complex number for transform
     def dft_calculator(self, matrix, u, v, type):
 
         result = 0.0
 
-        #Forward transform
+        # Forward transform
         if (type == 0):
 
             for i in range(15):
-                for j in range(15):
-                    result += (matrix[i][j]) * exp(-1 * 1j * (2 * pi / 15) * (u * i + v * j))
-        #Inverse transform
+                result += (matrix[i][i]) * np.exp(-1 * 1j * (2 * np.pi / 15) * (u * i + v * i))
+
+        # Inverse transform
         elif (type == 1):
 
             for i in range(15):
-                for j in range(15):
-                    result += (matrix[i][j]) * exp(1j * (2 * pi / 15) * (u * i + v * j))
-        #Discrete cosine transform
+                result += (matrix[i][i]) * np.exp(1j * (2 * np.pi / 15) * (u * i + v * i))
+
+        # Discrete cosine transform
         elif (type == 2):
 
             for i in range(15):
-                for j in range(15):
-                    result += (matrix[i][j]) * (cos((2 * pi / 15) * (u * i + v * j)))
+                result += (matrix[i][i]) * (np.cos((2 * np.pi / 15) * (u * i + v * i)))
 
         return result
 
@@ -43,7 +42,6 @@ class DFT:
         for u in range(15):
             for v in range(15):
                 tempArr[u][v] = self.dft_calculator(matrix, u, v, 0)
-
 
         return tempArr
 
@@ -62,8 +60,7 @@ class DFT:
 
         return tempArr
 
-
-    def discrete_cosine_tranform(self, matrix):
+    def discrete_cosine_transform(self, matrix):
         """Computes the discrete cosine transform of the input matrix
         takes as input:
         matrix: a 2d matrix
@@ -77,7 +74,6 @@ class DFT:
                 tempArr[u][v] = self.dft_calculator(matrix, u, v, 2)
 
         return tempArr
-
 
     def magnitude(self, matrix):
         """Computes the magnitude of the DFT
