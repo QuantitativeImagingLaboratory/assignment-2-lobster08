@@ -22,8 +22,8 @@ class DFT:
                 for i in range(N):
                     for j in range(N):
                         tempArr[u, v] += (matrix[i][j]) * exp(-1 * 1j * (2 * pi / N) * (u * i + v * j))
-        return tempArr
 
+        return tempArr
 
 
     def inverse_transform(self, matrix):
@@ -43,6 +43,7 @@ class DFT:
                 for u in range(N):
                     for v in range(N):
                         tempArr[i, j] += (matrix[u][v]) * exp(1j * (2 * pi / N) * (u * i + v * j))
+
         return tempArr
 
 
@@ -62,7 +63,7 @@ class DFT:
 
                 for i in range(N):
                     for j in range(N):
-                        tempArr[u, v] += (matrix[i][j]) * (cos(2 * pi / N) * (u * i + v * j))
+                        tempArr[u, v] += (matrix[i][j]) * (cos((2 * pi / N) * (u * i + v * j)))
         return tempArr
 
 
@@ -74,7 +75,7 @@ class DFT:
         returns a matrix representing magnitude of the dft"""
 
         # Create an empty array to store the transform
-        tempArr = np.zeros(shape=(15, 15), dtype=complex)
+        tempArr = np.zeros(shape=(15, 15), dtype=float)
 
         for u in range(15):
             for v in range(15):
