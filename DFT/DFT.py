@@ -47,7 +47,7 @@ class DFT:
         return tempArr
 
 
-    def discrete_cosine_transform(self, matrix):
+    def discrete_cosine_tranform(self, matrix):
         """Computes the discrete cosine transform of the input matrix
         takes as input:
         matrix: a 2d matrix

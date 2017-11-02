@@ -229,7 +229,25 @@ class Filtering:
         cv2.imwrite('output\Magnitude_of_DFT.jpg', dft_image)
 
         # 3. get the mask (write your code in functions provided above) the functions can be called by self.filter(shape, cutoff, order)
-        mask = self.filter(self.image)
+        # Check which mask is using
+        if (self.filter == self.get_ideal_low_pass_filter):
+            mask = self.filter(self.image, self.cutoff)
+
+        elif (self.filter == self.get_ideal_high_pass_filter):
+            mask = self.filter(self.image, self.cutoff)
+
+        elif (self.filter == self.get_butterworth_low_pass_filter):
+            mask = self.filter(self.image, self.cutoff, self.order)
+
+        elif (self.filter == self.get_butterworth_high_pass_filter):
+            mask = self.filter(self.image, self.cutoff, self.order)
+
+        elif (self.filter == self.get_gaussian_low_pass_filter):
+            mask = self.filter(self.image, self.cutoff)
+
+        elif (self.filter == self.get_gaussian_high_pass_filter):
+            mask = self.filter(self.image, self.cutoff)
+
 
         # 4. filter the image frequency based on the mask (Convolution theorem)
         filtered = mask * shifted_fft
