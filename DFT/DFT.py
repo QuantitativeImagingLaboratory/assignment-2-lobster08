@@ -74,11 +74,13 @@ class DFT:
         matrix: a 2d matrix
         returns a matrix representing magnitude of the dft"""
 
-        # Create an empty array to store the transform
-        tempArr = np.zeros(shape=(15, 15), dtype=float)
+        N = matrix.shape[0]
 
-        for u in range(15):
-            for v in range(15):
+        # Create an empty array to store the transform
+        tempArr = np.zeros(shape=(N, N), dtype=float)
+
+        for u in range(N):
+            for v in range(N):
                 tempArr[u][v] = abs(matrix[u][v])
 
         return tempArr
